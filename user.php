@@ -12,9 +12,9 @@
             $this->db = new DbConnect();
         }
         
-        public function isLoginExist($username, $password){
+        public function isLoginExist($usernameOrEmail, $password){
             
-            $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
+            $query = "select * from ".$this->db_table." where (username = '$usernameOrEmail' OR email = '$usernameOrEmail') AND password = '$password' Limit 1";
             
             $result = mysqli_query($this->db->getDb(), $query);
             
@@ -35,7 +35,7 @@
         
         public function isEmailUsernameExist($username, $email){
             
-            $query = "select * from ".$this->db_table." where username = '$username' AND email = '$email'";
+            $query = "select * from ".$this->db_table." where username = '$username' OR email = '$email'";
             
             $result = mysqli_query($this->db->getDb(), $query);
             
@@ -83,7 +83,7 @@
                 }else{
                     
                     $json['success'] = 0;
-                    $json['message'] = "Error in registering. Probably the username/email already exists";
+                    $json['message'] = "Error in registering. Some issue while inserting in the database";
                     
                 }
                 

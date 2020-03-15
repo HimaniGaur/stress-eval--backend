@@ -14,9 +14,6 @@
             if (mysqli_connect_errno($this->connect)){
                 echo "Unable to connect to MySQL Database: " . mysqli_connect_error();
             }
-            else{
-                echo "SUCCCXESRESDRJGKSH";
-            }
         }
         
         public function getDb(){
